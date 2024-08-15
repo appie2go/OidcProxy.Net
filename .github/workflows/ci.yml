@@ -17,12 +17,6 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
-        
-    - name: Install Google Chrome
-      run: |
-        Invoke-WebRequest -Uri "https://dl.google.com/chrome/install/latest/chrome_installer.exe" -OutFile "chrome_installer.exe"
-        Start-Process -Wait -FilePath "chrome_installer.exe" -ArgumentList "/silent", "/install"
-        Remove-Item -Force "chrome_installer.exe"
 
     - name: Run integration-tests
       run: dotnet test --filter 'FullyQualifiedName~.TestApps.IntegrationTests'

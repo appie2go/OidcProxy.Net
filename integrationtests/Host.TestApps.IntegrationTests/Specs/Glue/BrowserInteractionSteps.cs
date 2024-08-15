@@ -165,6 +165,12 @@ public class BrowserInteractionSteps(ScenarioContext scenarioContext)
         DummyClaimHandler.Claims.Should().Contain(x => x.Type == "oi_prst");
         DummyClaimHandler.Claims.Should().Contain(x => x.Type == "client_id");
     }
+    
+    [BeforeScenario]
+    public void IgnoreSslErrors()
+    {
+        ServicePointManager.ServerCertificateValidationCallback = (_, _, _, _) => true;
+    }
 
     [AfterScenario]
     public async Task TearDown()
